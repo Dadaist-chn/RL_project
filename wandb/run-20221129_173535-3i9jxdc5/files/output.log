@@ -1,0 +1,18 @@
+
+{'episode': 0, 'epsilon': 1.0, 'ep_reward': -135.34124086405012}
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train.py", line 94, in main
+    update_info = agent.update(buffer)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/rbf_agent.py", line 116, in update
+    f_state = self.featurize(batch.state)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/rbf_agent.py", line 61, in featurize
+    return self.featurizer.transform(self.scaler.transform(state))
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/sklearn/preprocessing/_data.py", line 975, in transform
+    X = self._validate_data(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/sklearn/base.py", line 600, in _validate_data
+    self._check_n_features(X, reset=reset)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/sklearn/base.py", line 400, in _check_n_features
+    raise ValueError(
+ValueError: X has 8 features, but StandardScaler is expecting 4 features as input.
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

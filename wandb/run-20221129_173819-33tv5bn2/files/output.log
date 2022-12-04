@@ -1,0 +1,56 @@
+
+{'episode': 0, 'epsilon': 1.0, 'ep_reward': -171.1837707933372}
+{'episode': 100, 'epsilon': 0.6666666666666666, 'ep_reward': -176.50427853141093, 'loss': 21.590377807617188, 'q_mean': -4.284429550170898, 'num_update': 10756}
+{'episode': 200, 'epsilon': 0.5, 'ep_reward': -60.287476991172, 'loss': 11.450286865234375, 'q_mean': -1.7944989204406738, 'num_update': 27107}
+Traceback (most recent call last):
+  File "train.py", line 114, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 94, in main
+    update_info = agent.update(buffer)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 86, in update
+    loss.backward()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 114, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 94, in main
+    update_info = agent.update(buffer)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 86, in update
+    loss.backward()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

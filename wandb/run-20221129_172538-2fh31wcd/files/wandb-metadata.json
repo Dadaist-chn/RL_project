@@ -1,0 +1,18 @@
+{
+    "os": "Linux-5.4.0-126-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-11-29T15:25:38.678190",
+    "startedAt": "2022-11-29T15:25:38.032739",
+    "docker": null,
+    "gpu": "Quadro K2200",
+    "gpu_count": 1,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "host": "barber",
+    "username": "xuy11",
+    "executable": "/usr/bin/python3"
+}

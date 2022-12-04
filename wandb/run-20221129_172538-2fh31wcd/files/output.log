@@ -1,0 +1,6 @@
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train.py", line 47, in main
+    env = env=make_env.create_env(config_file_name=lunarlander_countinous_easy, seed=0)
+NameError: name 'lunarlander_countinous_easy' is not defined
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

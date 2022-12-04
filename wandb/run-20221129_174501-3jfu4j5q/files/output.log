@@ -1,0 +1,86 @@
+
+{'episode': 0, 'epsilon': 1.0, 'ep_reward': -149.30168016216706}
+{'episode': 100, 'epsilon': 0.6666666666666666, 'ep_reward': -176.2553534901233, 'loss': 21.332050323486328, 'q_mean': -7.272194862365723, 'num_update': 10543}
+{'episode': 200, 'epsilon': 0.5, 'ep_reward': -94.56824697674826, 'loss': 14.645832061767578, 'q_mean': -5.528911113739014, 'num_update': 25947}
+{'episode': 300, 'epsilon': 0.4, 'ep_reward': -119.386136690228, 'loss': 7.447303771972656, 'q_mean': 2.3675806522369385, 'num_update': 74988}
+{'episode': 400, 'epsilon': 0.3333333333333333, 'ep_reward': -82.76345330751619, 'loss': 8.438655853271484, 'q_mean': 20.59166145324707, 'num_update': 153339}
+{'episode': 500, 'epsilon': 0.2857142857142857, 'ep_reward': 75.46006263371046, 'loss': 24.607892990112305, 'q_mean': 25.88774871826172, 'num_update': 241943}
+{'episode': 600, 'epsilon': 0.25, 'ep_reward': 112.64705892157771, 'loss': 6.860083103179932, 'q_mean': 31.97206687927246, 'num_update': 330111}
+{'episode': 700, 'epsilon': 0.2222222222222222, 'ep_reward': 94.7549650637783, 'loss': 58.495948791503906, 'q_mean': 35.677825927734375, 'num_update': 416123}
+{'episode': 800, 'epsilon': 0.2, 'ep_reward': 239.0824979226407, 'loss': 1.8475065231323242, 'q_mean': 35.85068130493164, 'num_update': 494364}
+{'episode': 900, 'epsilon': 0.18181818181818182, 'ep_reward': -22.96371208813592, 'loss': 13.204684257507324, 'q_mean': 34.401912689208984, 'num_update': 564053}
+{'episode': 1000, 'epsilon': 0.16666666666666666, 'ep_reward': 271.1587543433564, 'loss': 0.9175127744674683, 'q_mean': 33.27350997924805, 'num_update': 618426}
+{'episode': 1100, 'epsilon': 0.15384615384615385, 'ep_reward': 296.7760831304754, 'loss': 0.8371769189834595, 'q_mean': 35.31861877441406, 'num_update': 673486}
+{'episode': 1200, 'epsilon': 0.14285714285714285, 'ep_reward': 275.9526228199944, 'loss': 1.0095548629760742, 'q_mean': 37.91124725341797, 'num_update': 718229}
+{'episode': 1300, 'epsilon': 0.13333333333333333, 'ep_reward': 234.45709069823906, 'loss': 12.313587188720703, 'q_mean': 40.1483039855957, 'num_update': 763908}
+{'episode': 1400, 'epsilon': 0.125, 'ep_reward': 188.18182644847775, 'loss': 1.0200011730194092, 'q_mean': 43.462181091308594, 'num_update': 808957}
+{'episode': 1500, 'epsilon': 0.11764705882352941, 'ep_reward': 286.3127105465694, 'loss': 10.329608917236328, 'q_mean': 44.147132873535156, 'num_update': 856246}
+{'episode': 1600, 'epsilon': 0.1111111111111111, 'ep_reward': 247.06333488714853, 'loss': 10.30009937286377, 'q_mean': 43.63329315185547, 'num_update': 893016}
+{'episode': 1700, 'epsilon': 0.10526315789473684, 'ep_reward': 276.4886465705919, 'loss': 21.12188720703125, 'q_mean': 46.58092498779297, 'num_update': 924239}
+{'episode': 1800, 'epsilon': 0.1, 'ep_reward': 259.1847718675267, 'loss': 0.8029413223266602, 'q_mean': 50.286468505859375, 'num_update': 956401}
+{'episode': 1900, 'epsilon': 0.09523809523809523, 'ep_reward': 265.3697194008074, 'loss': 43.02824020385742, 'q_mean': 51.926815032958984, 'num_update': 987433}
+{'episode': 2000, 'epsilon': 0.09090909090909091, 'ep_reward': 255.34234821381617, 'loss': 8.061026573181152, 'q_mean': 55.314170837402344, 'num_update': 1018268}
+{'episode': 2100, 'epsilon': 0.08695652173913043, 'ep_reward': 286.03843604096585, 'loss': 7.1664886474609375, 'q_mean': 57.228355407714844, 'num_update': 1049024}
+{'episode': 2200, 'epsilon': 0.08333333333333333, 'ep_reward': 296.88967191291715, 'loss': 0.7846666574478149, 'q_mean': 59.78057861328125, 'num_update': 1077467}
+{'episode': 2300, 'epsilon': 0.08, 'ep_reward': 238.26962966574774, 'loss': 0.7799608707427979, 'q_mean': 61.71294403076172, 'num_update': 1105786}
+{'episode': 2400, 'epsilon': 0.07692307692307693, 'ep_reward': 268.33312719053185, 'loss': 5.352249622344971, 'q_mean': 64.86398315429688, 'num_update': 1135330}
+{'episode': 2500, 'epsilon': 0.07407407407407407, 'ep_reward': 161.77745490789573, 'loss': 0.9672647714614868, 'q_mean': 67.45974731445312, 'num_update': 1166727}
+{'episode': 2600, 'epsilon': 0.07142857142857142, 'ep_reward': 21.073081178638404, 'loss': 11.494611740112305, 'q_mean': 67.82479858398438, 'num_update': 1199672}
+{'episode': 2700, 'epsilon': 0.06896551724137931, 'ep_reward': 268.4210250215119, 'loss': 0.8142611980438232, 'q_mean': 68.3333511352539, 'num_update': 1229452}
+{'episode': 2800, 'epsilon': 0.06666666666666667, 'ep_reward': 247.92311688330466, 'loss': 13.017158508300781, 'q_mean': 69.92311096191406, 'num_update': 1262111}
+{'episode': 2900, 'epsilon': 0.06451612903225806, 'ep_reward': 277.7199567438957, 'loss': 8.861031532287598, 'q_mean': 72.07471466064453, 'num_update': 1291395}
+{'episode': 3000, 'epsilon': 0.0625, 'ep_reward': 279.1200834161116, 'loss': 5.489207744598389, 'q_mean': 74.00303649902344, 'num_update': 1320323}
+{'episode': 3100, 'epsilon': 0.06060606060606061, 'ep_reward': 272.6243137940123, 'loss': 11.883366584777832, 'q_mean': 74.62641906738281, 'num_update': 1351328}
+{'episode': 3200, 'epsilon': 0.058823529411764705, 'ep_reward': 273.6438303587234, 'loss': 1.174501895904541, 'q_mean': 75.99484252929688, 'num_update': 1381413}
+{'episode': 3300, 'epsilon': 0.05714285714285714, 'ep_reward': 276.9373876452055, 'loss': 10.080718040466309, 'q_mean': 77.16822814941406, 'num_update': 1410393}
+{'episode': 3400, 'epsilon': 0.05555555555555555, 'ep_reward': 297.3972471811262, 'loss': 7.37775993347168, 'q_mean': 77.60462951660156, 'num_update': 1439120}
+{'episode': 3500, 'epsilon': 0.05405405405405406, 'ep_reward': 292.1962444439813, 'loss': 2.561457395553589, 'q_mean': 80.02813720703125, 'num_update': 1466093}
+{'episode': 3600, 'epsilon': 0.05263157894736842, 'ep_reward': 285.4789611278739, 'loss': 8.46491527557373, 'q_mean': 81.80472564697266, 'num_update': 1492400}
+Traceback (most recent call last):
+  File "train.py", line 114, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 94, in main
+    update_info = agent.update(buffer)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 69, in update
+    non_final_mask = torch.tensor(tuple(map(lambda s: s == 1,
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 69, in <lambda>
+    non_final_mask = torch.tensor(tuple(map(lambda s: s == 1,
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 114, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 94, in main
+    update_info = agent.update(buffer)
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 69, in update
+    non_final_mask = torch.tensor(tuple(map(lambda s: s == 1,
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/dqn_agent.py", line 69, in <lambda>
+    non_final_mask = torch.tensor(tuple(map(lambda s: s == 1,
+KeyboardInterrupt

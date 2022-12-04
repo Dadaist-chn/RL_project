@@ -1,0 +1,18 @@
+{
+    "os": "Linux-5.4.0-126-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-12-04T10:20:12.579322",
+    "startedAt": "2022-12-04T10:20:11.983744",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "env_agent=lunarlander_dqn"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "host": "barber",
+    "username": "xuy11",
+    "executable": "/usr/bin/python3"
+}
