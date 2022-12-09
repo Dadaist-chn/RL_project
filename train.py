@@ -45,6 +45,7 @@ def main(cfg):
     elif cfg.env_name =="mountaincar":
         env = env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=0)
     
+   
     # env.seed(cfg.seed)
     if cfg.save_video:
         env = gym.wrappers.RecordVideo(env, work_dir/'video'/'train',
@@ -53,14 +54,16 @@ def main(cfg):
     # get number of actions and state dimensions
     n_actions = env.action_space.n
     state_shape = env.observation_space.shape
+    action_dim = env.action_space.shape[0]
+    max_action = env.action_space.high[0]
 
     # init agent
     if cfg.agent_name == "dqn":
         agent = DQNAgent(state_shape, n_actions, batch_size=cfg.batch_size, hidden_dims=cfg.hidden_dims,
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
-        # agent = DDPGAgent(n_actions, gamma=cfg.gamma, batch_size=cfg.batch_size)
-        pass
+        agent = DDPGAgent(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
+        # pass
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
 

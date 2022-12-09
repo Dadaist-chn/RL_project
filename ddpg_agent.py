@@ -88,40 +88,60 @@ class DDPGAgent(object):
         #        2. compute the critic loss and update the q's parameters
         #        3. compute actor loss and update the pi's parameters
         #        4. update the target q and pi using h.soft_update_params() (See the DQN code)
+        q_cur=self.q(batch.state,batch.action)
         
-        action= batch.action
-        state = batch.state
-        next_state = batch.next_state
-        reward = batch.reward
-        done = batch.not_done
+        with torch.no_grad():
+            next_action = (self.pi_target(batch.next_state)).clamp(-self.max_action,self.max_action)
+            q_tar= self.q_target(batch.next_state,next_action)
+            td_target=batch.reward+ self.sigmma*batch.not_done*q_tar
         
-        next_actions = self.pi_target(next_state).to(device)
-        next_Q = self.q_target(next_state, next_actions.detach())
-        next_Q = done* next_Q
-        Q_target = reward + self.gamma * next_Q
-
-        Q_val = self.q(state, action).to(device)
-        mse_loss = nn.MSELoss()
-        critic_loss = mse_loss(Q_val, Q_target.detach())
-
+        critic_loss = F.mse_loss(q_cur,td_target)
+        
         self.q_optim.zero_grad()
         critic_loss.backward()
         self.q_optim.step()
+        
+        actor_loss=-self.q(batch.state,self.pi(batch.state)).mean()
+        
+        self.q_optim.zero_grad()
+        critic_loss.backward()
+        self.q_optim.step()
+        
+        h.soft_update_params(self.q,self.q_target,self.tau)
+        h.soft_update_params(self.pi,self.pi_target,self.tau)
+        # action= batch.action
+        # state = batch.state
+        # next_state = batch.next_state
+        # reward = batch.reward
+        # done = batch.not_done
+        
+        # next_actions = self.pi_target(next_state).to(device)
+        # next_Q = self.q_target(next_state, next_actions.detach())
+        # next_Q = done* next_Q
+        # Q_target = reward + self.gamma * next_Q
 
-        actor_loss = -self.q(state, self.pi(state)).mean()
-        self.pi_optim.zero_grad()
-        actor_loss.backward()
+        # Q_val = self.q(state, action).to(device)
+        # mse_loss = nn.MSELoss()
+        # critic_loss = mse_loss(Q_val, Q_target.detach())
+
+        # self.q_optim.zero_grad()
+        # critic_loss.backward()
+        # self.q_optim.step()
+
+        # actor_loss = -self.q(state, self.pi(state)).mean()
+        # self.pi_optim.zero_grad()
+        # actor_loss.backward()
       
-        self.pi_optim.step()
+        # self.pi_optim.step()
 
-        h.soft_update_params(self.q, self.q_target, self.tau)
-        h.soft_update_params(self.pi, self.pi_target, self.tau)
+        # h.soft_update_params(self.q, self.q_target, self.tau)
+        # h.soft_update_params(self.pi, self.pi_target, self.tau)
 
 
         ########## Your code ends here. ##########
 
         # if you want to log something in wandb, you can put them inside the {}, otherwise, just leave it empty.
-        return {}
+        return {'q': q_cur.mean().item()}
 
     
     @torch.no_grad()
@@ -140,12 +160,9 @@ class DDPGAgent(object):
             # if evaluation equals False, add normal noise to the action, where the std of the noise is expl_noise
             # Hint: Make sure the returned action's shape is correct.
             # pass
-            action = self.pi.forward(x).to(device)
-            action = action.squeeze(dim=0) # Remove batch dimension
-            actions_normal = torch.distributions.Normal(loc=action, scale=expl_noise)
-
+            action=self.pi(x)
             if not evaluation:
-                action = actions_normal.sample()
+                action = expl_noise* torch.rand_like(action)
 
 
 

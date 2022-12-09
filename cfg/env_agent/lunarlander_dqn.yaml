@@ -2,7 +2,7 @@
 env_name: LunarLander
 agent_name: dqn
 max_episode_steps: 1000
-train_episodes: 4000
+train_episodes: 3000
 grad_clip_norm: 1
 
 batch_size: 512

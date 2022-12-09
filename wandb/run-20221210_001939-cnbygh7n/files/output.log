@@ -1,0 +1,6 @@
+Error executing job with overrides: ['env_name=lunarlander', 'agent_name=ddpg']
+Traceback (most recent call last):
+  File "train.py", line 62, in main
+    agent = DDPGAgent(n_actions, gamma=cfg.gamma, batch_size=cfg.batch_size)
+TypeError: __init__() missing 4 required positional arguments: 'action_dim', 'max_action', 'lr', and 'tau'
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
