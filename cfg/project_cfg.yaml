@@ -5,7 +5,7 @@ defaults:
     - override hydra/hydra_logging: disabled  
     - override hydra/job_logging: disabled 
 
-seed: 20
+seed: 30
 exp_name: project
 env_name: ${env_name}
 agent_name: ${agent_name}
@@ -19,7 +19,6 @@ glie_b: ${glie_b}
 gamma: 0.99 # discount term in Q learning
 batch_size: ${batch_size}
 buffer_size: ${buffer_size}
-
 
 save_video: false
 save_logging: true
