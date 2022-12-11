@@ -1,0 +1,8 @@
+Error executing job with overrides: ['env_name=lunarlander', 'agent_name=ddpg']
+Traceback (most recent call last):
+  File "train.py", line 101, in main
+    buffer.add(state, action, next_state, reward, done)
+  File "/m/home/home5/58/xuy11/unix/rl_course/common/buffer.py", line 30, in add
+    self.action[self.ptr] = self._to_tensor(action)
+RuntimeError: The expanded size of the tensor (1) must match the existing size (2) at non-singleton dimension 0.  Target sizes: [1].  Tensor sizes: [2]
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

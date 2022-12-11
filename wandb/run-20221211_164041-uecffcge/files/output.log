@@ -1,0 +1,6 @@
+Error executing job with overrides: ['env_name=lunarlander', 'agent_name=ddpg']
+Traceback (most recent call last):
+  File "train.py", line 124, in main
+    train_info = train(agent, env)
+NameError: name 'train' is not defined
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

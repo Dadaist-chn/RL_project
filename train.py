@@ -2,7 +2,7 @@ import gym
 import numpy as np
 from matplotlib import pyplot as plt
 from dqn_agent import DQNAgent
-from ddpg_agent import DDPGAgent
+from ddpg import DDPG
 import torch
 import tqdm
 import time
@@ -18,6 +18,45 @@ from common import logger as logger
 from common.buffer import ReplayBuffer
 
 import make_env
+
+def to_numpy(tensor):
+    return tensor.cpu().numpy().flatten()
+
+def train(agent, env, max_episode_steps=1000):
+    # Run actual training        
+    reward_sum, timesteps, done, episode_timesteps = 0, 0, False, 0
+    # Reset the environment and observe the initial state
+    obs = env.reset()
+    while not done:
+        episode_timesteps += 1
+        
+        # Sample action from policy
+        action, act_logprob = agent.get_action(obs)
+
+        # Perform the action on the environment, get new state and reward
+        next_obs, reward, done, _ = env.step(to_numpy(action))
+
+        # Store action's outcome (so that the agent can improve its policy)
+        if isinstance(agent, DDPG):
+            # ignore the time truncated terminal signal
+            done_bool = float(done) if episode_timesteps < max_episode_steps else 0 
+            agent.record(obs, action, next_obs, reward, done_bool)
+        else: raise ValueError
+
+        # Store total episode reward
+        reward_sum += reward
+        timesteps += 1
+
+        # update observation
+        obs = next_obs.copy()
+
+    # update the policy after one episode
+    info = agent.update()
+
+    # Return stats of training
+    info.update({'timesteps': timesteps,
+                'ep_reward': reward_sum,})
+    return info
 
 
 @hydra.main(config_path='cfg', config_name='project_cfg')
@@ -40,10 +79,14 @@ def main(cfg):
                     config=cfg)
     
     # create env
+
     if cfg.env_name =="lunarlander":
-        env = env=make_env.create_env(config_file_name="lunarlander_discrete_easy", seed=0)
+        if cfg.agent_name == "dqn":
+            env = env=make_env.create_env(config_file_name="lunarlander_discrete_easy", seed=cfg.seed)
+        if cfg.agent_name == "ddpg":
+            env = env=make_env.create_env(config_file_name="lunarlander_continuous_easy", seed=cfg.seed)
     elif cfg.env_name =="mountaincar":
-        env = env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=0)
+        env = env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
     
    
     # env.seed(cfg.seed)
@@ -52,61 +95,81 @@ def main(cfg):
                                         episode_trigger=lambda x: x % 100 == 0,
                                         name_prefix=cfg.exp_name) # save video for every 100 episodes
     # get number of actions and state dimensions
-    n_actions = env.action_space.n
+    
+   
+   
+   
+    # 
     state_shape = env.observation_space.shape
-    action_dim = env.action_space.shape[0]
-    max_action = env.action_space.high[0]
+
 
     # init agent
     if cfg.agent_name == "dqn":
+        n_actions = env.action_space.n
         agent = DQNAgent(state_shape, n_actions, batch_size=cfg.batch_size, hidden_dims=cfg.hidden_dims,
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
-        agent = DDPGAgent(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
+        action_dim = env.action_space.shape[0]
+        max_action = env.action_space.high[0]
+        agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
         # pass
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
 
     #  init buffer
-    buffer = ReplayBuffer(state_shape, action_dim=1, max_size=int(cfg.buffer_size))
+    if cfg.agent_name == "dqn":
+        buffer = ReplayBuffer(state_shape, action_dim=1, max_size=int(cfg.buffer_size))
 
-    for ep in range(cfg.train_episodes):
-        state, done, ep_reward, env_step = env.reset(), False, 0, 0
-        eps = max(cfg.glie_b/(cfg.glie_b + ep), 0.05)
+        for ep in range(cfg.train_episodes):
+            state, done, ep_reward, env_step = env.reset(), False, 0, 0
+            eps = max(cfg.glie_b/(cfg.glie_b + ep), 0.05)
 
-        # collecting data and fed into replay buffer
-        while not done:
-            env_step += 1
-            if ep < cfg.random_episodes: # in the first #random_episodes, collect random trajectories
-                action = env.action_space.sample()
-            else:
-                # Select and perform an action
-                action = agent.get_action(state, eps)
-                if isinstance(action, np.ndarray): action = action.item()
-                
-            next_state, reward, done, _ = env.step(action)
-            ep_reward += reward
+            # collecting data and fed into replay buffer
+            while not done:
+                env_step += 1
+                if ep < cfg.random_episodes: # in the first #random_episodes, collect random trajectories
+                    action = env.action_space.sample()
+                else:
+                    # Select and perform an action
+                    action = agent.get_action(state, eps)
+                    if isinstance(action, np.ndarray): action = action.item()
+                    
+                next_state, reward, done, _ = env.step(action)
+                ep_reward += reward
 
-            # Store the transition in replay buffer
-            buffer.add(state, action, next_state, reward, done)
+                # Store the transition in replay buffer
+                buffer.add(state, action, next_state, reward, done)
 
-            # Move to the next state
-            state = next_state
+                # Move to the next state
+                state = next_state
+            
+                # Perform one update_per_episode step of the optimization
+                if ep >= cfg.random_episodes:
+                    update_info = agent.update(buffer)
+                else: update_info = {}
+
+            info = {'episode': ep, 'epsilon': eps, 'ep_reward': ep_reward}
+            info.update(update_info)
+
+            if cfg.use_wandb: wandb.log(info)
+            if (not cfg.silent) and (ep % 100 == 0): print(info)
+
+            # save model and logging    
+            if cfg.save_model:
+                agent.save(model_path)
+    elif cfg.agent_name == "ddpg":
+        for ep in range(cfg.train_episodes + 1):
+            # collect data and update the policy
+            train_info = train(agent, env)
+
+            if cfg.use_wandb:
+                wandb.log(train_info)
+            if (not cfg.silent) and (ep % 100 == 0):
+                print({"ep": ep, **train_info})
+
         
-            # Perform one update_per_episode step of the optimization
-            if ep >= cfg.random_episodes:
-                update_info = agent.update(buffer)
-            else: update_info = {}
-
-        info = {'episode': ep, 'epsilon': eps, 'ep_reward': ep_reward}
-        info.update(update_info)
-
-        if cfg.use_wandb: wandb.log(info)
-        if (not cfg.silent) and (ep % 100 == 0): print(info)
-
-    # save model and logging    
-    if cfg.save_model:
-        agent.save(model_path)
+        if cfg.save_model:
+            agent.save(model_path)
 
     
     print('------ Training Finished ------')

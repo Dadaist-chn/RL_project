@@ -1,0 +1,14 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+Error executing job with overrides: ['env_name=lunarlander', 'agent_name=ddpg']
+Traceback (most recent call last):
+  File "train.py", line 163, in main
+    train_info = train(agent, env)
+  File "train.py", line 54, in train
+    info = agent.update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg_agent.py", line 75, in update
+    info = self._update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg_agent.py", line 96, in _update
+    td_target=batch.reward+ self.sigmma*batch.not_done*q_tar
+AttributeError: 'DDPGAgent' object has no attribute 'sigmma'
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

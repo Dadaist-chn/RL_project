@@ -20,6 +20,7 @@ gamma: 0.99 # discount term in Q learning
 batch_size: ${batch_size}
 buffer_size: ${buffer_size}
 
+
 save_video: false
 save_logging: true
 save_model: true

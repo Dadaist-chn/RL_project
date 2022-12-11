@@ -1,0 +1,72 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+{'ep': 100, 'timesteps': 176, 'ep_reward': -45.602502490135194}
+{'ep': 200, 'timesteps': 206, 'ep_reward': -612.9354182199124}
+Traceback (most recent call last):
+  File "train.py", line 179, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 163, in main
+    train_info = train(agent, env)
+  File "train.py", line 54, in train
+    info = agent.update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 75, in update
+    info = self._update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 115, in _update
+    self.pi_optim.step()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/optim/optimizer.py", line 113, in wrapper
+    return func(*args, **kwargs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/optim/adam.py", line 130, in step
+    if p.grad is not None:
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 1083, in grad
+    return self._grad
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 179, in <module>
+    main()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 163, in main
+    train_info = train(agent, env)
+  File "train.py", line 54, in train
+    info = agent.update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 75, in update
+    info = self._update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 115, in _update
+    self.pi_optim.step()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/optim/optimizer.py", line 113, in wrapper
+    return func(*args, **kwargs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/optim/adam.py", line 130, in step
+    if p.grad is not None:
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 1083, in grad
+    return self._grad
+KeyboardInterrupt

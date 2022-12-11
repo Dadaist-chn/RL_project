@@ -1,0 +1,11 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+{'ep': 100, 'timesteps': 155, 'ep_reward': -368.6062254219504}
+Error executing job with overrides: ['env_name=lunarlander', 'agent_name=ddpg', 'env_agent=lunarlander_ddpg']
+Traceback (most recent call last):
+  File "train.py", line 172, in main
+    agent.save(cfg.model_path)
+omegaconf.errors.ConfigAttributeError: Key 'model_path' is not in struct
+    full_key: model_path
+    object_type=dict
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

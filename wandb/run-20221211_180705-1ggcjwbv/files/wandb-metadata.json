@@ -1,0 +1,28 @@
+{
+    "os": "Linux-5.4.0-135-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-12-11T16:07:06.343981",
+    "startedAt": "2022-12-11T16:07:05.605739",
+    "docker": null,
+    "gpu": "Quadro K2200",
+    "gpu_count": 1,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "env_name=lunarlander",
+        "agent_name=ddpg",
+        "env_agent=lunarlander_ddpg"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/Dadaist-chn/RL_project.git",
+        "commit": "fe1d005479609993181f1bf5fc9e26646f17b0b9"
+    },
+    "email": "dadaist_chn@163.com",
+    "root": "/m/home/home5/58/xuy11/unix/rl_course/project",
+    "host": "barber",
+    "username": "xuy11",
+    "executable": "/usr/bin/python3"
+}

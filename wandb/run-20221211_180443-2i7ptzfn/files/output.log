@@ -1,0 +1,4 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+{'ep': 100, 'timesteps': 155, 'ep_reward': -368.6062254219504}
+------ Training Finished ------
