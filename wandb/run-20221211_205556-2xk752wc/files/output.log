@@ -1,0 +1,66 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+{'ep': 100, 'timesteps': 155, 'ep_reward': -368.6062254219504}
+{'ep': 200, 'timesteps': 618, 'ep_reward': -258.5760425324194}
+{'ep': 300, 'timesteps': 184, 'ep_reward': -127.636120737982}
+{'ep': 400, 'timesteps': 1000, 'ep_reward': -73.54769549577856}
+{'ep': 500, 'timesteps': 166, 'ep_reward': -35.97299422048215}
+{'ep': 600, 'timesteps': 290, 'ep_reward': -221.17545240430903}
+Traceback (most recent call last):
+  File "train.py", line 179, in <module>
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 163, in main
+    elif cfg.agent_name == "ddpg":
+  File "train.py", line 54, in train
+    info = agent.update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 75, in update
+    info = self._update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 108, in _update
+    critic_loss.backward()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "train.py", line 179, in <module>
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/main.py", line 90, in decorated_main
+    _run_hydra(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 389, in _run_hydra
+    _run_app(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 452, in _run_app
+    run_and_report(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 213, in run_and_report
+    return func()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/utils.py", line 453, in <lambda>
+    lambda: hydra.run(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "train.py", line 163, in main
+    elif cfg.agent_name == "ddpg":
+  File "train.py", line 54, in train
+    info = agent.update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 75, in update
+    info = self._update()
+  File "/m/home/home5/58/xuy11/unix/rl_course/project/ddpg.py", line 108, in _update
+    critic_loss.backward()
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/u/58/xuy11/unix/.local/lib/python3.8/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

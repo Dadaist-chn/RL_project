@@ -29,10 +29,20 @@ def main(cfg):
     model_path = work_dir 
     # create env
     if cfg.env_name =="lunarlander":
-        env = env=make_env.create_env(config_file_name="lunarlander_discrete_easy", seed=cfg.seed)
+        if cfg.agent_name == "dqn":
+            env=make_env.create_env(config_file_name="lunarlander_discrete_easy", seed=cfg.seed)
+            n_actions = env.action_space.n
+        if cfg.agent_name == "ddpg":
+            env=make_env.create_env(config_file_name="lunarlander_continuous_easy", seed=cfg.seed)
+            action_dim = env.action_space.shape[0]
+            max_action = env.action_space.high[0]
     elif cfg.env_name =="mountaincar":
-        env = env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
-    env.seed(cfg.seed)
+        if cfg.agent_name == "dqn":
+            env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
+        if cfg.agent_name == "ddpg":
+            env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
+            action_dim = env.action_space.shape[0]
+            max_action = env.action_space.high[0]
     if cfg.save_video:
         env = gym.wrappers.RecordVideo(env, work_dir/'video'/'test', 
                                         episode_trigger=lambda x: True,
@@ -43,12 +53,9 @@ def main(cfg):
 
     # init agent
     if cfg.agent_name == "dqn":
-        n_actions = env.action_space.n
         agent = DQNAgent(state_shape, n_actions, batch_size=cfg.batch_size, hidden_dims=cfg.hidden_dims,
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
-        action_dim = env.action_space.shape[0]
-        max_action = env.action_space.high[0]
         agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
