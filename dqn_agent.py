@@ -59,41 +59,25 @@ class DQNAgent(object):
         #        4. check torch.nn.utils.clip_grad_norm_() to know how to clip grad norm
         #        5. You can go throught the PyTorch Tutorial given on MyCourses if you are not familiar with it.
         
-  
-       
-        # print(batch.not_done)
+        # calculate the q(s,a)
+        qs = self.policy_net(batch.state).gather(1, batch.action.to(dtype=torch.int64)) # shape: [batch_size, 1]
 
-        action_batch = batch.action.to(torch.long)
-        # print(self.policy_net(batch.state).gather(1, action_batch).shape)
-        qs = self.policy_net(batch.state).gather(1, action_batch).squeeze(dim=1)
-        non_final_mask = torch.tensor(tuple(map(lambda s: s == 1,
-                                          batch.not_done)), device=device, dtype=torch.bool)
-        # print(non_final_mask.shape)
+        # calculate q target
+        with torch.no_grad():
+            qs_tar = batch.reward + self.gamma * batch.not_done * \
+                     self.target_net(batch.next_state).max(dim=1, keepdim=True).values
 
-        q_tar = torch.zeros(self.batch_size, device=device)
-        # print(torch.max(self.target_net(batch.next_state), dim=-1).values.shape)
-        q_tar[non_final_mask] = torch.max(self.target_net(batch.next_state), dim=-1).values[non_final_mask]
-
-        # print(non_final_mask)
-        # print(q_tar)
-
-        reward_batch = batch.reward.squeeze(dim=-1)
-        q_tar = (reward_batch + self.gamma * q_tar).detach()
-
-        criterion = torch.nn.MSELoss()
-        loss = criterion(qs, q_tar)
+        loss = F.smooth_l1_loss(qs, qs_tar)
         self.optimizer.zero_grad()
         loss.backward()
-
-        # clip grad norm and perform the optimization step
-        torch.nn.utils.clip_grad.clip_grad_norm_(self.policy_net.parameters(), self.grad_clip_norm)
+        # clip grad norm
+        torch.nn.utils.clip_grad_norm_(self.policy_net.parameters(), self.grad_clip_norm, error_if_nonfinite=False)
         self.optimizer.step()
-
         ########## You code ends here #########
 
-        # update the target networks
+        # update the target network
         h.soft_update_params(self.policy_net, self.target_net, self.tau)
-        
+
         # assert 1 == 0
         return {'loss': loss.item(), 
                 'q_mean': qs.mean().item(),
