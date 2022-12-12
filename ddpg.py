@@ -53,7 +53,7 @@ class DDPG(object):
             batch_size,
             use_ou=False,
             normalize=False,
-            buffer_size=200000
+            buffer_size=1e6
     ):
         state_dim = state_shape[0]
         self.action_dim = action_dim
@@ -84,7 +84,7 @@ class DDPG(object):
         # used to count number of transitions in a trajectory
         self.buffer_ptr = 0
         self.buffer_head = 0 
-        self.random_transition =  150000 # collect 5k random data for better exploration
+        self.random_transition = 5000  # collect 5k random data for better exploration
 
     # def update(self):
     #     """ After collecting one trajectory, update the pi and q for #transition times: """
@@ -164,10 +164,10 @@ class DDPG(object):
         if self.state_scaler is not None:
             x = self.state_scaler.transform(x)
 
-        if self.buffer_ptr < self.random_transition:  # collect random trajectories for better exploration.
+        if (self.buffer_ptr < self.random_transition) and (not evaluation):  # collect random trajectories for better exploration.
             action = torch.rand(self.action_dim)
         else:
-            expl_noise = 0.2  # the stddev of the expl_noise if not evaluation
+            expl_noise = 0.1  # the stddev of the expl_noise if not evaluation
             ########## Your code starts here. ##########
             # Use the policy to calculate the action to execute
             # if evaluation equals False, add normal noise to the action, where the std of the noise is expl_noise
