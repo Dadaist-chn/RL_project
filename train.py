@@ -117,7 +117,8 @@ def main(cfg):
         agent = DQNAgent(state_shape, n_actions, batch_size=cfg.batch_size, hidden_dims=cfg.hidden_dims,
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
-        agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
+        # agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
+        agent = DDPG(state_shape, action_dim, max_action, cfg.lr_actor, cfg.lr_critic, cfg.gamma, cfg.tau, cfg.batch_size,False, False, cfg.buffer_size)
         # pass
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
