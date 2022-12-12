@@ -1,11 +1,11 @@
 # @package _global_
-env_name: LunarLander
+env_name: MountainCar
 agent_name: ddpg    
 
 train_episodes: 3000
 gamma: 0.99
-lr_actor: 3e-4
-lr_critic: 1e-5
+lr_actor: 1e-4
+lr_critic: 1e-3
 tau: 0.005
 batch_size: 64
-buffer_size:  200000
+buffer_size:  100000
