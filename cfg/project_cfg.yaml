@@ -5,7 +5,7 @@ defaults:
     - override hydra/hydra_logging: disabled  
     - override hydra/job_logging: disabled 
 
-seed: 30
+seed: 20
 exp_name: project
 env_name: ${env_name}
 agent_name: ${agent_name}
@@ -13,7 +13,7 @@ run_id: ??? # decided during execution
 
 train_episodes: ${train_episodes}
 max_episode_steps: ${max_episode_steps}
-test_episodes: 10
+test_episodes: 50
 random_episodes: 10
 glie_b: ${glie_b}
 gamma: 0.99 # discount term in Q learning

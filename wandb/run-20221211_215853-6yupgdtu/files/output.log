@@ -1,0 +1,33 @@
+
+{'ep': 0, 'timesteps': 116, 'ep_reward': -787.215090991531}
+{'ep': 100, 'timesteps': 377, 'ep_reward': -393.73502600623914}
+{'ep': 200, 'timesteps': 1000, 'ep_reward': -81.7017117362696}
+{'ep': 300, 'timesteps': 895, 'ep_reward': -137.54931652745208}
+{'ep': 400, 'timesteps': 155, 'ep_reward': -455.7194330351444}
+{'ep': 500, 'timesteps': 350, 'ep_reward': 267.53489863872545}
+{'ep': 600, 'timesteps': 196, 'ep_reward': -74.23024304467712}
+{'ep': 700, 'timesteps': 321, 'ep_reward': 224.7632911120276}
+{'ep': 800, 'timesteps': 249, 'ep_reward': 299.74714749262796}
+{'ep': 900, 'timesteps': 384, 'ep_reward': 250.5517626259479}
+{'ep': 1000, 'timesteps': 222, 'ep_reward': 287.9157275794914}
+{'ep': 1100, 'timesteps': 1000, 'ep_reward': 148.7634811315904}
+{'ep': 1200, 'timesteps': 173, 'ep_reward': 267.2234982247036}
+{'ep': 1300, 'timesteps': 158, 'ep_reward': 270.00241590470216}
+{'ep': 1400, 'timesteps': 192, 'ep_reward': 258.4574434567826}
+{'ep': 1500, 'timesteps': 226, 'ep_reward': 242.55407108570165}
+{'ep': 1600, 'timesteps': 197, 'ep_reward': 249.49918526313576}
+{'ep': 1700, 'timesteps': 447, 'ep_reward': 202.28528252523216}
+{'ep': 1800, 'timesteps': 193, 'ep_reward': 265.0764955920415}
+{'ep': 1900, 'timesteps': 359, 'ep_reward': 239.74909278456926}
+{'ep': 2000, 'timesteps': 672, 'ep_reward': 263.9150427359575}
+{'ep': 2100, 'timesteps': 197, 'ep_reward': 279.87924955782836}
+{'ep': 2200, 'timesteps': 236, 'ep_reward': 281.31332081590494}
+{'ep': 2300, 'timesteps': 189, 'ep_reward': 307.6259848349714}
+{'ep': 2400, 'timesteps': 215, 'ep_reward': 261.48329717007266}
+{'ep': 2500, 'timesteps': 196, 'ep_reward': 273.9876132107926}
+{'ep': 2600, 'timesteps': 184, 'ep_reward': 314.1140455972062}
+{'ep': 2700, 'timesteps': 185, 'ep_reward': 241.00371633044645}
+{'ep': 2800, 'timesteps': 195, 'ep_reward': 288.621613099616}
+{'ep': 2900, 'timesteps': 174, 'ep_reward': 307.3327594280597}
+{'ep': 3000, 'timesteps': 102, 'ep_reward': 18.588196077135706}
+------ Training Finished ------

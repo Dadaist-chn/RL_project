@@ -1,0 +1,33 @@
+
+{'ep': 0, 'timesteps': 71, 'ep_reward': -541.1694658503795}
+{'ep': 100, 'timesteps': 155, 'ep_reward': -368.6062254219504}
+{'ep': 200, 'timesteps': 618, 'ep_reward': -258.5760425324194}
+{'ep': 300, 'timesteps': 184, 'ep_reward': -127.636120737982}
+{'ep': 400, 'timesteps': 1000, 'ep_reward': -73.54769549577856}
+{'ep': 500, 'timesteps': 166, 'ep_reward': -35.97299422048215}
+{'ep': 600, 'timesteps': 290, 'ep_reward': -221.17545240430903}
+{'ep': 700, 'timesteps': 137, 'ep_reward': -111.30240484519148}
+{'ep': 800, 'timesteps': 481, 'ep_reward': 182.3081603676029}
+{'ep': 900, 'timesteps': 1000, 'ep_reward': -78.43297051719703}
+{'ep': 1000, 'timesteps': 1000, 'ep_reward': -55.72650925794005}
+{'ep': 1100, 'timesteps': 462, 'ep_reward': 232.26926434752838}
+{'ep': 1200, 'timesteps': 298, 'ep_reward': 253.4298930169932}
+{'ep': 1300, 'timesteps': 313, 'ep_reward': 226.54106978601655}
+{'ep': 1400, 'timesteps': 234, 'ep_reward': 264.8497803912795}
+{'ep': 1500, 'timesteps': 356, 'ep_reward': 246.83208888557004}
+{'ep': 1600, 'timesteps': 225, 'ep_reward': 217.2975426409612}
+{'ep': 1700, 'timesteps': 291, 'ep_reward': 269.1887841275478}
+{'ep': 1800, 'timesteps': 199, 'ep_reward': 245.2435363924607}
+{'ep': 1900, 'timesteps': 468, 'ep_reward': 232.4284274520503}
+{'ep': 2000, 'timesteps': 228, 'ep_reward': -173.69705281271445}
+{'ep': 2100, 'timesteps': 250, 'ep_reward': 239.95578389119777}
+{'ep': 2200, 'timesteps': 398, 'ep_reward': 259.66523323447416}
+{'ep': 2300, 'timesteps': 221, 'ep_reward': 222.94282571934633}
+{'ep': 2400, 'timesteps': 294, 'ep_reward': 243.4146622022855}
+{'ep': 2500, 'timesteps': 388, 'ep_reward': -68.23905911148381}
+{'ep': 2600, 'timesteps': 169, 'ep_reward': 275.92902508194254}
+{'ep': 2700, 'timesteps': 167, 'ep_reward': 254.4252327050799}
+{'ep': 2800, 'timesteps': 328, 'ep_reward': 230.32416856825657}
+{'ep': 2900, 'timesteps': 358, 'ep_reward': 249.51216837768575}
+{'ep': 3000, 'timesteps': 195, 'ep_reward': 249.09818552046235}
+------ Training Finished ------
