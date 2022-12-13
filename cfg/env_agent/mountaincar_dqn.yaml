@@ -1,0 +1,13 @@
+# @package _global_
+env_name: mountaincar
+agent_name: dqn
+max_episode_steps: 1000
+train_episodes: 3000
+grad_clip_norm: 1
+
+batch_size: 512
+buffer_size: 500000
+hidden_dims: [64, 64]
+glie_b: 200
+tau: 0.001
+lr: 3e-5

@@ -93,6 +93,7 @@ def main(cfg):
     # Load policy / q functions
     agent.load(model_path)
     if cfg.agent_name == "dqn":
+        ep_rewards = []
         for ep in range(cfg.test_episodes):
             state, done, ep_reward, env_step = env.reset(), False, 0, 0
             rewards = []
@@ -111,7 +112,13 @@ def main(cfg):
                 rewards.append(reward)
 
             info = {'episode': ep, 'ep_reward': ep_reward}
+            ep_rewards.append(ep_reward)
             if (not cfg.silent): print(info)
+        Ep_Rewards=np.array(ep_rewards)
+        mean = np.mean(Ep_Rewards)
+        std = np.std(Ep_Rewards)
+        print('mean'+str(mean))
+        print('std'+str(std))
     elif cfg.agent_name == "ddpg":
         test(agent, env, num_episode=cfg.test_episodes)
 
