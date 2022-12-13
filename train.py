@@ -22,6 +22,13 @@ import make_env
 def to_numpy(tensor):
     return tensor.cpu().numpy().flatten()
 
+def dis_to_con(discrete_action, env, action_dim):
+    action_low_bound = env.action_space.low
+    action_up_bound = env.action_space.high
+    action = action_low_bound + (discrete_action / (action_dim - 1)) * (action_up_bound - action_low_bound)
+
+    return action
+
 def train(agent, env, max_episode_steps=1000):
     # Run actual training        
     reward_sum, timesteps, done, episode_timesteps = 0, 0, False, 0
@@ -91,7 +98,7 @@ def main(cfg):
     elif cfg.env_name =="mountaincar":
         if cfg.agent_name == "dqn":
             env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
-            
+            n_actions = 11 # to do set manually
         if cfg.agent_name == "ddpg":
             env=make_env.create_env(config_file_name="mountaincarcontinuous_easy", seed=cfg.seed)
             action_dim = env.action_space.shape[0]
@@ -118,15 +125,19 @@ def main(cfg):
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
         # agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
-        agent = DDPG(state_shape, action_dim, max_action, cfg.lr_actor, cfg.lr_critic, cfg.gamma, cfg.tau, cfg.batch_size,False, False, cfg.buffer_size)
+        agent = DDPG(state_shape, action_dim, max_action, cfg.lr_actor, cfg.lr_critic, cfg.gamma, cfg.tau, False, False,cfg.batch_size, cfg.buffer_size)
         # pass
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
 
-    #  init buffer
+   
+    
+    
     if cfg.agent_name == "dqn":
         buffer = ReplayBuffer(state_shape, action_dim=1, max_size=int(cfg.buffer_size))
 
+        #start training
+        time_start=time.time()
         for ep in range(cfg.train_episodes):
             state, done, ep_reward, env_step = env.reset(), False, 0, 0
             eps = max(cfg.glie_b/(cfg.glie_b + ep), 0.05)
@@ -135,11 +146,18 @@ def main(cfg):
             while not done:
                 env_step += 1
                 if ep < cfg.random_episodes: # in the first #random_episodes, collect random trajectories
-                    action = env.action_space.sample()
+                    if cfg.env_name == "mountaincar":
+                        num_action = agent.n_actions
+                        action = np.random.randint(low=0, high=num_action)
+                    else:
+                        action = env.action_space.sample()
                 else:
                     # Select and perform an action
                     action = agent.get_action(state, eps)
                     if isinstance(action, np.ndarray): action = action.item()
+                
+                if cfg.env_name == "mountaincar":
+                    action = dis_to_con(action, env, agent.n_actions)
                     
                 next_state, reward, done, _ = env.step(action)
                 ep_reward += reward
@@ -160,11 +178,10 @@ def main(cfg):
 
             if cfg.use_wandb: wandb.log(info)
             if (not cfg.silent) and (ep % 100 == 0): print(info)
-
-            # save model and logging    
-            if cfg.save_model:
-                agent.save(model_path)
+                
     elif cfg.agent_name == "ddpg":
+        
+        time_start=time.time()
         for ep in range(cfg.train_episodes + 1):
             # collect data and update the policy
             train_info = train(agent, env)
@@ -175,11 +192,12 @@ def main(cfg):
                 print({"ep": ep, **train_info})
 
         
-        if cfg.save_model:
-            agent.save(model_path)
-
+    if cfg.save_model:
+        agent.save(model_path)
+    time_end=time.time()
     
     print('------ Training Finished ------')
+    print('time cost',time_end-time_start,'s')
 
 
 if __name__ == '__main__':

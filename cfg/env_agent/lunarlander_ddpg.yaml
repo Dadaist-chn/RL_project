@@ -1,10 +1,11 @@
 # @package _global_
-env_name: LunarLander
+env_name: lunarlander
 agent_name: ddpg    
 
 train_episodes: 3000
 gamma: 0.99
-lr: 3e-4
+lr_actor: 3e-4
+lr_critic: 3e-4
 tau: 0.005
 batch_size: 256
 buffer_size: 1e6

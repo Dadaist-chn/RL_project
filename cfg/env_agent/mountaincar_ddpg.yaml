@@ -1,5 +1,5 @@
 # @package _global_
-env_name: MountainCar
+env_name: mountaincar
 agent_name: ddpg    
 
 train_episodes: 3000

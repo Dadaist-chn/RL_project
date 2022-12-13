@@ -1,5 +1,5 @@
 # @package _global_
-env_name: LunarLander
+env_name: lunarlander
 agent_name: dqn
 max_episode_steps: 1000
 train_episodes: 3000
