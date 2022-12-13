@@ -86,7 +86,7 @@ def main(cfg):
         agent = DQNAgent(state_shape, n_actions, batch_size=cfg.batch_size, hidden_dims=cfg.hidden_dims,
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
-        agent = DDPG(state_shape, action_dim, max_action, cfg.lr_actor, cfg.lr_critic, cfg.gamma, cfg.tau, False, False,cfg.batch_size, cfg.buffer_size)
+        agent = DDPG(state_shape, action_dim, max_action, cfg.actor_lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
 
@@ -117,10 +117,35 @@ def main(cfg):
         Ep_Rewards=np.array(ep_rewards)
         mean = np.mean(Ep_Rewards)
         std = np.std(Ep_Rewards)
-        print('mean'+str(mean))
-        print('std'+str(std))
+        print('mean: '+str(mean))
+        print('std: '+str(std))
+
+
     elif cfg.agent_name == "ddpg":
-        test(agent, env, num_episode=cfg.test_episodes)
+        ep_rewards = []
+        for ep in range(cfg.test_episodes):
+            state, done, ep_reward, env_step = env.reset(), False, 0, 0
+            rewards = []
+
+            # collecting data and fed into replay buffer
+            while not done:
+                action, _ = agent.get_action(state, evaluation=True)
+                if isinstance(action, np.ndarray): action = action.item()
+                if isinstance(action, torch.Tensor): action = action.cpu().numpy()
+                state, reward, done, _ = env.step(action)
+                ep_reward += reward
+                rewards.append(reward)
+
+            info = {'episode': ep, 'ep_reward': ep_reward}
+            ep_rewards.append(ep_reward)
+            if (not cfg.silent): print(info)
+
+        Ep_Rewards=np.array(ep_rewards)
+        mean = np.mean(Ep_Rewards)
+        std = np.std(Ep_Rewards)
+        print('mean: '+str(mean))
+        print('std: '+str(std))
+
 
 
 if __name__ == '__main__':

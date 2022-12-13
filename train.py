@@ -125,7 +125,7 @@ def main(cfg):
                          gamma=cfg.gamma, lr=cfg.lr, tau=cfg.tau)
     elif cfg.agent_name == "ddpg":
         # agent = DDPG(state_shape, action_dim, max_action, cfg.lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
-        agent = DDPG(state_shape, action_dim, max_action, cfg.lr_actor, cfg.lr_critic, cfg.gamma, cfg.tau, False, False,cfg.batch_size, cfg.buffer_size)
+        agent = DDPG(state_shape, action_dim, max_action, cfg.actor_lr, cfg.gamma, cfg.tau, cfg.batch_size, cfg.buffer_size)
         # pass
     else:
         raise ValueError(f"No {cfg.agent_name} agent implemented")
